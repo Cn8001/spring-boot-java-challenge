@@ -31,4 +31,5 @@ public class Booking extends RepresentationModel<Booking>{
     private String depTime;
 
     private double duration;
+
 }

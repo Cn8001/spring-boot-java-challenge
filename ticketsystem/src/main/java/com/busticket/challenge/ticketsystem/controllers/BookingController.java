@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -66,13 +67,19 @@ public class BookingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Booking> getBookingById(@RequestParam String id) {
+    public ResponseEntity<Booking> getBookingById(@PathVariable String id) {
         Optional<Booking> recordOpt = repository.findById(id);
         if(recordOpt.isPresent()){
             Booking b = recordOpt.get();
             return new ResponseEntity<>(b,HttpStatus.OK);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBookingById(@PathVariable("id") String id){
+        repository.deleteById(id);
     }
     
 }
