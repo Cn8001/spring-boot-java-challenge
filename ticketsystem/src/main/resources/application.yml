@@ -1,0 +1,32 @@
+spring:
+    profiles:
+        active:
+            - prod
+    application:
+        name: ticketsystem
+server:
+    port: 8080
+
+---
+spring:
+    config:
+        activate:
+            on-profile:
+                - prod
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: ticketsystemdb
+
+
+---
+spring:
+    config:
+        activate:
+            on-profile: dev
+    datasource:
+        name: ticketsystemtestdb
+        generate-unique-name: false
+
+        

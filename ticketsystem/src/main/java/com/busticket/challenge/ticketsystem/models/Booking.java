@@ -5,13 +5,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.annotation.Nonnull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document
 @AllArgsConstructor
 @Data
+@Document(collection = "ticketsystem")
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 public class Booking extends RepresentationModel<Booking>{
+    
     @Id
     private String id;
 
