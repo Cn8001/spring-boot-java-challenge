@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -42,7 +41,7 @@ public class BookingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable("id") String id,
+    public ResponseEntity<Booking> updateBooking(@PathVariable("id") int id,
             @RequestBody Booking booking){
 
         Optional<Booking> oldValOpt = repository.findById(id);
@@ -67,7 +66,7 @@ public class BookingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Booking> getBookingById(@PathVariable String id) {
+    public ResponseEntity<Booking> getBookingById(@PathVariable int id) {
         Optional<Booking> recordOpt = repository.findById(id);
         if(recordOpt.isPresent()){
             Booking b = recordOpt.get();
@@ -78,7 +77,7 @@ public class BookingController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBookingById(@PathVariable("id") String id){
+    public void deleteBookingById(@PathVariable("id") int id){
         repository.deleteById(id);
     }
     
